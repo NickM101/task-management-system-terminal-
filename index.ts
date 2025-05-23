@@ -1,39 +1,3 @@
-const themeToggleBtn = document.getElementById('themeToggleBtn') as HTMLButtonElement;
-const body = document.body;
-
-function setTheme(mode: 'light' | 'dark') {
-    if (mode === 'dark') {
-        body.classList.add('dark-mode');
-        themeToggleBtn.innerHTML = '<ion-icon name="sunny-outline"></ion-icon> Toggle Theme';
-    } else {
-        body.classList.remove('dark-mode');
-        themeToggleBtn.innerHTML = '<ion-icon name="moon-outline"></ion-icon> Toggle Theme';
-    }
-    localStorage.setItem('themeMode', mode);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('themeMode') as 'light' | 'dark' | null;
-    if (savedTheme) {
-        setTheme(savedTheme);
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        setTheme('dark');
-    } else {
-        setTheme('light');
-    }
-    renderUsers();
-    renderTasks();
-});
-
-themeToggleBtn.addEventListener('click', () => {
-    if (body.classList.contains('dark-mode')) {
-        setTheme('light');
-    } else {
-        setTheme('dark');
-    }
-});
-
-
 interface User {
     id: string;
     name: string;
@@ -541,7 +505,38 @@ async function deleteTask(id: string): Promise<void> {
     }
 }
 
+const themeToggleBtn = document.getElementById('themeToggleBtn') as HTMLButtonElement;
+const body = document.body;
+
+function setTheme(mode: 'light' | 'dark') {
+    if (mode === 'dark') {
+        body.classList.add('dark-mode');
+        themeToggleBtn.innerHTML = '<ion-icon name="sunny-outline"></ion-icon> Toggle Theme';
+    } else {
+        body.classList.remove('dark-mode');
+        themeToggleBtn.innerHTML = '<ion-icon name="moon-outline"></ion-icon> Toggle Theme';
+    }
+    localStorage.setItem('themeMode', mode);
+}
+
+
+themeToggleBtn.addEventListener('click', () => {
+    if (body.classList.contains('dark-mode')) {
+        setTheme('light');
+    } else {
+        setTheme('dark');
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('themeMode') as 'light' | 'dark' | null;
+    if (savedTheme) {
+        setTheme(savedTheme);
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        setTheme('dark');
+    } else {
+        setTheme('light');
+    }
     renderUsers();
     renderTasks();
 });
