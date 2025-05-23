@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><ion-icon name="checkbox-outline"></ion-icon> Task Manager</h1>
+            <button id="themeToggleBtn" class="btn secondary-btn"><ion-icon name="moon-outline"></ion-icon> Toggle
+                Theme</button>
+        </div>
+        <div class="grid">
+            <section>
+                <h2>Users</h2>
+                <button id="addUserBtn" class="btn primary-btn"><ion-icon name="person-add"></ion-icon> Add
+                    User</button>
+
+                <div id="userFormContainer" class="form-container hidden">
+                    <h3 id="userFormTitle">Add New User</h3>
+                    <form id="userForm">
+                        <input type="hidden" id="userId">
+                        <div class="form-group">
+                            <label for="userName">Name:</label>
+                            <input type="text" id="userName" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn success-btn"><ion-icon name="save"></ion-icon> Save
+                                User</button>
+                            <button type="button" id="cancelUserBtn" class="btn secondary-btn"><ion-icon
+                                    name="close-circle"></ion-icon> Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="list-container">
+                    <h3>User List</h3>
+                    <ul id="userList"></ul>
+                </div>
+            </section>
+
+            <section>
+                <h2>Tasks</h2>
+                <button id="addTaskBtn" class="btn primary-btn"><ion-icon name="add-circle"></ion-icon> Add
+                    Task</button>
+
+                <div id="taskFormContainer" class="form-container hidden">
+                    <h3 id="taskFormTitle">Add New Task</h3>
+                    <form id="taskForm">
+                        <input type="hidden" id="taskId">
+                        <div class="form-group">
+                            <label for="taskTitle">Title:</label>
+                            <input type="text" id="taskTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="taskDueDate">Due Date:</label>
+                            <input type="date" id="taskDueDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="taskPriority">Priority:</label>
+                            <select id="taskPriority">
+                                <option value="Low">Low</option>
+                                <option value="Medium" selected>Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="taskAssignedUser">Assign To:</label>
+                            <select id="taskAssignedUser">
+                                <option value="">Unassigned</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="taskStatus">Status:</label>
+                            <select id="taskStatus">
+                                <option value="Pending">Pending</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn success-btn"><ion-icon name="save"></ion-icon> Save
+                                Task</button>
+                            <button type="button" id="cancelTaskBtn" class="btn secondary-btn"><ion-icon
+                                    name="close-circle"></ion-icon> Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="list-container">
+                    <h3>Task List</h3>
+                    <ul id="taskList"></ul>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="confirmationModal" class="modal hidden">
+        <div class="modal-content">
+            <p id="modalToast"></p>
+            <div class="modal-actions">
+                <button id="confirmDeleteBtn" class="btn danger-btn"><ion-icon name="trash"></ion-icon> Confirm</button>
+                <button id="cancelDeleteBtn" class="btn secondary-btn"><ion-icon name="close-circle"></ion-icon>
+                    Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastBox" class="toast-box hidden">
+        <p id="toastText"></p>
+        <button id="closeToastBox" class="btn secondary-btn"><ion-icon name="close-circle"></ion-icon></button>
+    </div>
+
+    <script src="dist/index.js"></script>
+</body>
+
+</html>

@@ -1,11 +1,21 @@
 {
   "name": "task-management-system-terminal",
   "module": "index.ts",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "lite-server",
+    "dev": "npm run build && npm run start"
+  },
   "type": "module",
   "devDependencies": {
     "@types/bun": "latest"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "lite-server": "^2.6.1"
   }
 }
